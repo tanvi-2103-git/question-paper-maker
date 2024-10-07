@@ -34,7 +34,7 @@ export function SingleSubject() {
         getquestionPapers();
     }, []);
     var filter = questionPaper.filter((paper)=>(paper.sub_name==sub_name && paper.user_id== user_id
-
+    // var totalMarks = filter.reduce((paper)=>(paper.questions))
     ))
     var paperList = filter.map((paper, i) => (
       <Card
@@ -158,7 +158,7 @@ export function SingleSubject() {
         </Box>
     
     
-    <Button variant="contained" component={Link} to="/addquestionpaper">Add</Button>
+    <Button variant="contained" sx={{bgcolor:'warning'}} component={Link} to="/addquestionpaper">Add</Button>
     </Box>
   )
 }

@@ -15,6 +15,8 @@ export default function Monthly() {
       
       setQuestionPaper(result);
     }
+    const user_id = localStorage.getItem('user_id');
+    const filter = questionPaper.filter((paper)=>(paper.user_id === user_id));
     function groupByMonth(papers:QuestionPaper[]) {
         return papers.reduce((acc, paper) => {
           const paperDate = new Date(paper.createdAt);
@@ -29,7 +31,7 @@ export default function Monthly() {
         }, {} as Record<string, number>);
       }
       
-      const monthlyData = groupByMonth(questionPaper);
+      const monthlyData = groupByMonth(filter);
       
       console.log(monthlyData);
       useEffect(()=>{

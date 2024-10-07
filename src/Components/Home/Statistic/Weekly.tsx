@@ -15,6 +15,8 @@ export default function Weekly() {
       
       setQuestionPaper(result);
     }
+    const user_id = localStorage.getItem('user_id');
+  const filter = questionPaper.filter((paper)=>(paper.user_id === user_id));
     function groupByWeek(papers:QuestionPaper[]) {
       return papers.reduce((acc, paper) => {
         const paperDate = new Date(paper.createdAt);
@@ -33,7 +35,7 @@ export default function Weekly() {
     }
     // console.log(groupByWeek(questionPaper));
     
-    const weeklyData = groupByWeek(questionPaper);
+    const weeklyData = groupByWeek(filter);
    console.log(weeklyData);
     useEffect(()=>{
       getquestionPapers();

@@ -2,15 +2,19 @@
 import React, { useEffect, useState } from "react";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { QuestionPaper } from "../../class/questionPaper";
-import { addQuestionPaper, updateQuestionPaper } from "../../model/subCRUD";
+import { addQuestionPaper, getAllSub, updateQuestionPaper } from "../../model/subCRUD";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { useLoaderData, useLocation, useParams } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate, useParams } from "react-router-dom";
 import QuestionField from "./QuestionField";
+import { Subject } from "../../class/subject";
 
 export default function AddPaperForm() {
   const { pathname } = useLocation();
+  let [sub, setSub] = useState<Subject[]>([]);
+
   const params = useParams<{ _id: string }>(); 
   const _id: string = params._id || '';
+  const navigate = useNavigate();
    const questionPapers = useLoaderData() as QuestionPaper | undefined;
   const {  handleSubmit, control, setValue } = useForm<QuestionPaper>({
     defaultValues: {
@@ -40,10 +44,13 @@ export default function AddPaperForm() {
       data._id = _id;
       const result = await updateQuestionPaper(data);
       if(result){
-      alert("Question Paper updated successfully!");}
+      alert("Question Paper updated successfully!");
+    navigate('/')}
+
     } else {
       await addQuestionPaper(data);
       alert("Question Paper added successfully!");
+      navigate('/')
     }
   };
   // async function updQuestionPaper() {
@@ -68,6 +75,17 @@ export default function AddPaperForm() {
       setValue("questions", questionPapers.questions);
     }
   }, [questionPapers, setValue]);
+  async function getsubjects() {
+    const result = await getAllSub();
+    setSub(result);
+  }
+  useEffect(() => {
+    getsubjects();
+  }, []);
+  let subjects = sub.map((sub, i) => (
+  <option key={"Al"+i} value={sub.sub_name}>{sub.sub_name}</option>
+
+  ));
 
   return (
     <Box
@@ -90,23 +108,37 @@ export default function AddPaperForm() {
           name="sub_name"
           control={control}
           render={({ field }) => (
-            <TextField
-              {...field}
-              fullWidth
-              label="Subject"
-              variant="outlined"
-              sx={{
-                "& .MuiInputBase-input": { color: "white" },
-                "& .MuiInputLabel-root": { color: "white" },
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": { borderColor: "white" },
-                  "&:hover fieldset": { borderColor: "white" },
-                  "&.Mui-focused fieldset": { borderColor: "white" },
-                },
-              }}
-              required
-              margin="normal"
-            />
+            // <TextField
+            //   {...field}
+            //   fullWidth
+            //   label="Subject"
+            //   variant="outlined"
+            //   sx={{
+            //     "& .MuiInputBase-input": { color: "white" },
+            //     "& .MuiInputLabel-root": { color: "white" },
+            //     "& .MuiOutlinedInput-root": {
+            //       "& fieldset": { borderColor: "white" },
+            //       "&:hover fieldset": { borderColor: "white" },
+            //       "&.Mui-focused fieldset": { borderColor: "white" },
+            //     },
+            //   }}
+            //   required
+            //   margin="normal"
+            // />
+            
+                <select  {...field} id="sub_name" name="sub_name" className="form-select opacity-75" required style={{
+                  color: 'white',
+                  backgroundColor: 'black',
+                  borderColor: 'white',
+                  padding: '10px',
+                  borderRadius: '4px',
+                  width: '100%',
+                  height: '56px',
+                  fontSize: '16px',
+                }}>
+                    {subjects}
+                </select>
+                
           )}
         />
 

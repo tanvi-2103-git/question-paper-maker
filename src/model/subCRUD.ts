@@ -59,7 +59,7 @@ export async function addQuestionPaper(questionPaper:QuestionPaper) {
     return res.data;
 }
 export async function addsubject(subject:Subject) {
-    const res = await axiosInstance.post(`${url}/addquestionpaper`,subject);
+    const res = await axiosInstance.post(`${url}/addsubject`,subject);
     return res.data;
 }
 export async function getQuestionPaperById(_id:string) {

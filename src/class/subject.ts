@@ -1,4 +1,7 @@
 export class Subject {
-    constructor (public sub_name: string){}
+   
+    constructor (public sub_name: string,
+      
+    ){}
   }
   
