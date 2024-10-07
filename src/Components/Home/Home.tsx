@@ -36,13 +36,13 @@ export default function Home() {
     // </List>
   ));
   return (
-    <div className="row">
+    <div className="row m-2">
       
-       <div className="col-5 m-5">
+       <div className="col-12 col-md-5 ">
         <SubjectList subList={subList}></SubjectList></div>
 
 
-      <div className="col-5 m-5">
+      <div className="col-12 col-md-7">
         <Statistic />
       </div>
     </div>

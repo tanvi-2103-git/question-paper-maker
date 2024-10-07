@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../model/subCRUD';
 
 export default function Login() {
@@ -28,24 +28,24 @@ export default function Login() {
     }
   };
   return (
-  //   <form onSubmit={handleSubmit}>
-  // <div className="mb-3">
-  //   <label htmlFor="email" className="form-label">Email address</label>
-  //   <input type="email" className="form-control" name="email"  onChange={handleChange}  aria-describedby="emailHelp" />
-  //   <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-  // </div>
-  // <div className="mb-3">
-  //   <label htmlFor="password" className="form-label">Password</label>
-  //   <input type="password" className="form-control" name="password" onChange={handleChange}  />
-  // </div>
+    <form onSubmit={handleSubmit}  className="m-3 text-light">
+  <div className="mb-3 text-light">
+    <label htmlFor="email" className="form-label">Email address</label>
+  <input type="email" name="email" className="form-control" placeholder="Email" onChange={handleChange} required />
+    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div className="mb-3">
+    <label htmlFor="password" className="form-label">Password</label>
+  <input type="password" name="password" className="form-control" placeholder="Password" onChange={handleChange} required />
+  </div>
   
-  // <button type="submit" className="btn btn-primary">Submit</button>
-
-     <form onSubmit={handleSubmit}>
-    <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+  <button type="submit" className='btn btn-warning'>Login</button>
+  <p>Don't have account<Link to='/register'>Register</Link></p>
+    {/* <form onSubmit={handleSubmit}>
+     <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
     <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
-    <button type="submit">Login</button>
-  </form> 
-  // </form>
+     <button type="submit">Login</button>
+   </form>  */}
+</form>
   )
 }

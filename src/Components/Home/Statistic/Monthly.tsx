@@ -46,7 +46,7 @@ export default function Monthly() {
     <div>
 <div className="card mb-3 bg-dark text-light text-start" >
 <div className="row g-0">
-<div className="col-md-7 py-2" >
+<div className="col-md-6 py-2" >
 <BarChart width={350} height={300} data={data}>
 <CartesianGrid strokeDasharray="3 3" />
 <XAxis dataKey="weekStart" />
@@ -55,14 +55,14 @@ export default function Monthly() {
 <Legend />
 <Bar dataKey="count" fill="#FABC3F" />
 </BarChart></div>
-<div className="col-md-5">
+<div className="col-md-6">
 <div className="card-body">
 <h4 className="card-title ">Statistic</h4><hr/>
-<table className='text-light table-dark '>
+<table className='text-light table-dark table-bordered text-center'>
 <thead>
  <tr>
    <th scope="col">Month</th>
-   <th scope="col">Number of Question Papers</th>
+   <th scope="col">Question Papers</th>
  </tr>
 </thead>
 <tbody >
