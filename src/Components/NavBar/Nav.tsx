@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
@@ -26,6 +27,7 @@ export default function Nav() {
     console.log(localStorage.getItem('token'));
     const logout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
         setIsAuthenticated(false);
         navigate('/login');
       };
@@ -45,14 +47,12 @@ export default function Nav() {
                 <Box display="flex" sx={{ flexGrow: 1 }}>
                   
                     <Button color="inherit" component={Link} to="/">
-                        Home
+                     {/* Dashboard
+            <DashboardIcon /> */}
+             Home
+        
                     </Button>
-                    <Button color="inherit" component={Link} to="/about">
-                        About
-                    </Button>
-                    <Button color="inherit" component={Link} to="/contact" >
-                        Contact
-                    </Button>
+                    
                 </Box>
                 {isAuthenticated?<Button color="inherit" variant="contained" onClick={logout}>
                     Logout

@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { ChangeEvent, useState } from 'react'
 import { register } from '../../model/subCRUD';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Register() {
+  const navigate = useNavigate();
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -11,7 +12,7 @@ export default function Register() {
         confirmPassword: '',
         contactNumber: '',
       });
-    
+    console.log(formData,"formData")
       const handleChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
@@ -25,6 +26,7 @@ export default function Register() {
           register(formData);
           // await axios.post('http://localhost:5000/register', formData);
           alert('Registration successful');
+          navigate('/login')
         } catch (error) {
           alert('Error registering user');
         }

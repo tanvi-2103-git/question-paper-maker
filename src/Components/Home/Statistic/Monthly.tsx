@@ -21,7 +21,7 @@ export default function Monthly() {
         return papers.reduce((acc, paper) => {
           const paperDate = new Date(paper.createdAt);
           const formattedMonth = format(paperDate, 'yyyy-MM'); // Group by year and month
-      
+          
           if (!acc[formattedMonth]) {
             acc[formattedMonth] = 0;
           }
@@ -51,7 +51,7 @@ export default function Monthly() {
 <div className="col-md-6 py-2" >
 <BarChart width={350} height={300} data={data}>
 <CartesianGrid strokeDasharray="3 3" />
-<XAxis dataKey="weekStart" />
+<XAxis dataKey="month" />
 <YAxis />
 <Tooltip />
 <Legend />

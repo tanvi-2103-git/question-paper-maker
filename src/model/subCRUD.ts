@@ -19,6 +19,7 @@ axiosInstance.interceptors.request.use(
       // If no token exists, abort the request
       if (!token) {
         console.warn('No token found. Request aborted.');
+        // window.alert("login first");
            window.location.href = "/login";
       }
   
