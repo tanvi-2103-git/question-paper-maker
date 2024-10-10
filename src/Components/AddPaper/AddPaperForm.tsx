@@ -22,6 +22,7 @@ export default function AddPaperForm() {
       questions: questionPapers?.questions || [],
     },
   });
+   
 
   const { fields, append } = useFieldArray({
     control,
@@ -30,9 +31,13 @@ export default function AddPaperForm() {
 
   const onSubmit = async (data: QuestionPaper) => {
     console.log(data);
-    
+    if(data.questions.length<=0){
+      alert("Add Question")
+    }else{
     const user_id = localStorage.getItem('user_id');
-    console.log("data",data);
+    console.log(data.questions.length,"data",data);
+
+    
     
     console.log(user_id);
     
@@ -51,7 +56,7 @@ export default function AddPaperForm() {
       await addQuestionPaper(data);
       alert("Question Paper added successfully!");
       navigate('/')
-    }
+    }}
   };
   // async function updQuestionPaper() {
   //       // console.log(song);
@@ -83,6 +88,7 @@ export default function AddPaperForm() {
     getsubjects();
   }, []);
   let subjects = sub.map((sub, i) => (
+    
   <option key={"Al"+i} value={sub.sub_name}>{sub.sub_name}</option>
 
   ));
@@ -135,7 +141,9 @@ export default function AddPaperForm() {
                   width: '100%',
                   height: '56px',
                   fontSize: '16px',
+                  
                 }}>
+                  <option value="" disabled>Select a subject</option>
                     {subjects}
                 </select>
                 

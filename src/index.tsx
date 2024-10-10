@@ -13,6 +13,7 @@ import AddPaperForm from './Components/AddPaper/AddPaperForm';
 import { getQuestionPaperById } from './model/subCRUD';
 import Register from './Components/LoginRegister/Register';
 import Login from './Components/LoginRegister/Login';
+import { FileUpload } from './Components/fileUpload/FileUpload';
 
 let childRoutes=[
   {
@@ -34,6 +35,10 @@ let childRoutes=[
     
     element:<SingleSubject></SingleSubject>,
     path:'singlesubject/:sub_name'
+  },{
+    
+    element:<FileUpload></FileUpload>,
+    path:'fileupload'
   },
   {
     

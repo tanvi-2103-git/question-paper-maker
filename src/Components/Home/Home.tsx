@@ -25,21 +25,22 @@ export default function Home() {
     getsubjects();
   }, []);
 
-  var subList = sub.map((subject, i) => (
-    // <List
-    //   sx={{ width: "100%", maxWidth: 360, bgcolor: "dark" }}
-    //   key={i}
-    //   className="list-group-item-dark"
-    // >
-    <li className="list-group-item bg-dark text-light d-flex justify-content-between align-items-center">
-<Link to={`/singlesubject/${subject.sub_name}`} style={{ textDecoration: 'none', color:'white' }}>{subject.sub_name}</Link></li>
-    // </List>
-  ));
+//   var subList = sub.map((subject, i) => (
+//     // <List
+//     //   sx={{ width: "100%", maxWidth: 360, bgcolor: "dark" }}
+//     //   key={i}
+//     //   className="list-group-item-dark"
+//     // >
+//     <li className="list-group-item bg-dark text-light d-flex justify-content-between align-items-center">
+// <Link to={`/singlesubject/${subject.sub_name}`} style={{ textDecoration: 'none', color:'white' }}>{subject.sub_name}</Link></li>
+//     // </List>
+//   ));
   return (
     <div className="row m-2">
       
        <div className="col-12 col-md-5 ">
-       <SubjectList ></SubjectList></div>
+       <SubjectList ></SubjectList>
+       </div>
 
         {/* <SubjectList subList={subList}></SubjectList></div> */}
 

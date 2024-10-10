@@ -11,6 +11,8 @@ export default function SubjectList() {
   let [sub, setSub] = useState<Subject[]>([]);
   async function getsubjects() {
     const result = await getAllSub();
+    if(result)
+    
     setSub(result);
   }
   useEffect(() => {
@@ -47,7 +49,7 @@ useEffect(() => {
         <div className="card mb-3 bg-dark text-light text-start" >
   <div className="row g-0">
     <div className="col-md-5">
-      <img src="https://i.pinimg.com/736x/b8/fe/80/b8fe8088357e038bdf3c25bcf45fea40.jpg" className="img-fluid rounded-start" alt="..." />
+      <img src="https://i.pinimg.com/736x/b8/fe/80/b8fe8088357e038bdf3c25bcf45fea40.jpg" className="img-fluid rounded-start h-100" alt="..." />
     </div>
     <div className="col-md-7">
       <div className="card-body">
