@@ -47,7 +47,9 @@ export default function Statistic() {
 //   },[])
   return (
  
-<><Weekly></Weekly>
-<Monthly></Monthly></>
+ <>
+ <Weekly></Weekly>
+<Monthly></Monthly>
+</> 
   )
 }

@@ -39,7 +39,8 @@ export default function Home() {
     <div className="row m-2">
       
        <div className="col-12 col-md-5 ">
-       <SubjectList ></SubjectList></div>
+       <SubjectList ></SubjectList>
+       </div>
 
         {/* <SubjectList subList={subList}></SubjectList></div> */}
 

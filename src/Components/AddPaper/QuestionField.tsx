@@ -51,15 +51,18 @@ export default function QuestionField({ control, index, question }: QuestionFiel
       />
 
       <FormControl fullWidth variant="outlined" margin="normal" required sx={sx}>
-        <InputLabel id={`answer-type-label-${index}`}>Answer Type</InputLabel>
+        {/* <InputLabel id={`answer-type-label-${index}`}>Answer Type</InputLabel> */}
+      
         <Controller
           name={`questions[${index}].answer_type`}
           control={control}
           defaultValue={question?.answer_type || ''}
+
           render={({ field }) => (
             <select
               {...field}
               id={`answer-type-label-${index}`}
+              
               style={{
                 color: 'white',
                 backgroundColor: 'black',
@@ -71,6 +74,7 @@ export default function QuestionField({ control, index, question }: QuestionFiel
                 fontSize: '16px',
               }}
             >
+              
               <option value="MCQ">MCQ</option>
               <option value="True/False">True/False</option>
               <option value="Description">Description</option>
@@ -98,6 +102,7 @@ export default function QuestionField({ control, index, question }: QuestionFiel
       <Controller
         name={`questions[${index}].marks_alloted`}
         control={control}
+        
         defaultValue={question?.marks_alloted || 0}
         render={({ field }) => (
           <TextField

@@ -2,7 +2,7 @@ import { Box, Button, Card, CardContent, Container, List, ListItem, Typography }
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { QuestionPaper } from '../../class/questionPaper';
-import { deleteQuestionPaperById, getAllQuestionPapers } from '../../model/subCRUD';
+import { deleteQuestionPaperById, getAllQuestionPapers, getQuestionPaperBySubject } from '../../model/subCRUD';
 
 export function SingleSubject() {
     let {sub_name} = useParams();
@@ -10,8 +10,13 @@ export function SingleSubject() {
     const user_id = localStorage.getItem('user_id');
     console.log(user_id);
     async function getquestionPapers() {
-      const result = await getAllQuestionPapers();
-      setQuestionPaper(result);
+     if(sub_name && user_id){
+      const result = await getQuestionPaperBySubject(sub_name,user_id);
+      console.log("result", result);
+      
+      setQuestionPaper(result.data);
+      console.log("questionPaper", questionPaper);
+      }
     }
     async function deleteQuestionPaper(_id:string) {
       const ans = window.confirm("Do you really want to delete??");
@@ -23,7 +28,7 @@ export function SingleSubject() {
         console.log(data);
         // console.log(data.affectedRows);
         
-        if (data.deletedCount > 0) {
+        if (data.data.deletedCount > 0) {
           window.alert("Question paper deleted Successfully");
           getquestionPapers();
         } else window.alert("Something went wrong....");
@@ -33,17 +38,17 @@ export function SingleSubject() {
     useEffect(() => {
         getquestionPapers();
     }, []);
-    var filter = questionPaper.filter((paper)=>(paper.sub_name==sub_name && paper.user_id== user_id
-    // var totalMarks = filter.reduce((paper)=>(paper.questions))
-    ));
-    var totalMarks = filter.map((paper) => 
+    // var filter = questionPaper.filter((paper)=>(paper.sub_name==sub_name && paper.user_id== user_id
+    // // var totalMarks = filter.reduce((paper)=>(paper.questions))
+    // ));
+    var totalMarks = questionPaper.map((paper) => 
       paper.questions.reduce((acc, question) => {
         acc += question.marks_alloted; // Assuming question.marks_alloted is a number
         return acc;
       }, 0) // Initial value of accumulator is set to 0
     );
 
-    var paperList = filter.map((paper, i) => {
+    var paperList = questionPaper.map((paper, i) => {
       // Calculate total marks for each paper
       const totalMarks = paper.questions.reduce((acc, question) => {
         acc += question.marks_alloted; // Assuming question.marks_alloted is a number

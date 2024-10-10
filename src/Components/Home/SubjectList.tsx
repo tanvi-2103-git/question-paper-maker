@@ -11,6 +11,8 @@ export default function SubjectList() {
   let [sub, setSub] = useState<Subject[]>([]);
   async function getsubjects() {
     const result = await getAllSub();
+    if(result)
+    
     setSub(result);
   }
   useEffect(() => {

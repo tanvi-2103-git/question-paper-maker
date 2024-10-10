@@ -25,7 +25,7 @@ export default function Register() {
         try {
           register(formData);
           // await axios.post('http://localhost:5000/register', formData);
-          alert('Registration successful');
+          // alert('Registration successful');
           navigate('/login')
         } catch (error) {
           alert('Error registering user');
